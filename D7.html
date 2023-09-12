@@ -258,6 +258,7 @@
         let cell5 = td2.insertCell(4);
         let image = document.createElement(`img`);
         image.style.width = `50px`;
+        image.style.display = `inline-block`;
         image.src = `https://images.ctfassets.net/uaddx06iwzdz/32vFjbfpQQ2GoUDmS73gYT/e72b2239eb16ee8c074545f4a45fe09a/Audi_A2_Front-1100.jpeg`;
         cell1.innerHTML = `audi A2`;
         cell2.appendChild(image);
@@ -272,11 +273,11 @@
             */
 
       const hideAllImages = function () {
-        const h = document.getElementsByTagName(`td`)[7];
+        const h = document.getElementsByTagName(`td`)[6];
         console.log(h);
         h.style.display = `none`;
       };
-      hideAllImages();
+      // hideAllImages();
       /* EXTRA ESERCIZIO 15
               Crea una funzione che cambi il colore del h2 con id "changeMyColor" con un colore random ad ogni click ricevuto
             */
