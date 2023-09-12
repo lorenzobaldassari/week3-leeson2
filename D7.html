@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      body div,
+      footer {
+        padding: 1rem;
+      }
+
+      footer {
+        padding: 1rem;
+        background-color: black;
+        color: white;
+      }
+
+      .myHeading {
+        color: #ff00d6;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <h1 onclick="makeItClickable()">Questo è il titolo della pagina</h1>
+      <h2>Questo è il sottotitolo della pagina</h2>
+    </div>
+
+    <div>
+      <hr />
+
+      <ul id="firstList">
+        <li>1st</li>
+        <li>2nd</li>
+        <li>3rd</li>
+      </ul>
+
+      <ul id="secondList">
+        <li>1st</li>
+        <li>2nd</li>
+        <li>3rd</li>
+      </ul>
+
+      <a href="https://epicode.com/it/">Questo link porta al sito di Epicode</a>
+
+      <div>
+        <p>Questo testo è un placeholder per gli esercizi</p>
+      </div>
+    </div>
+
+    <div>
+      <p>Anche questo testo è per gli esercizi</p>
+      <h2 id="changeMyColor" style="color: #ff00d6">
+        Apri questa pagina con VSCode per scoprire gli esercizi
+      </h2>
+    </div>
+
+    <div id="tableArea"></div>
+
+    <footer onclick="revealFooterLink()">
+      <h3>
+        DOM Manipulation is super
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Manipulating_documents"
+          >AWESOME!</a
+        >
+      </h3>
+    </footer>
+    <script>
+      /* ESERCIZIO 1
+               Scrivi una funzione per cambiare il titolo della pagina in qualcos'altro
+            */
+
+      const changeTitle = function (str) {
+        const h = document.getElementsByTagName(str)[0];
+        console.log(h);
+        h.innerText = `il titolo e' stato cambiato in: caitlyn e' il mio champion preferito`;
+      };
+      changeTitle(`h1`);
+
+      /* ESERCIZIO 2
+               Scrivi una funzione per aggiungere al titolo della pagina una classe "myHeading"
+            */
+
+      const addClassToTitle = function () {
+        const h = document.getElementsByTagName(`h1`)[0];
+        h.classList.add(`myHeading`);
+      };
+      console.log(`la classe myHeading e' stata aggiunta ad h1`);
+      addClassToTitle();
+
+      /* ESERCIZIO 3
+               Scrivi una funzione per che cambi il testo dei p figli di un div
+              */
+
+      const changePcontent = function () {
+        const h = document.querySelectorAll(`div p`);
+
+        for (i = 0; i < h.length; i++)
+          h[
+            i
+          ].innerText = `il testo e' stato cambiato in :caitlyn e' il mio champion preferito`;
+      };
+      console.log(`i paragrafi figli di d un div sono stati modificati`);
+      changePcontent();
+
+      /* ESERCIZIO 4
+               Scrivi una funzione che cambi la proprietà href di ogni link (tranne quello nel footer) con il valore https://www.google.com
+              */
+
+      const changeUrls = function () {
+        const h = document.getElementsByTagName(`a`)[0];
+        h.setAttribute(`href`, `https://www.google.com`);
+      };
+      console.log(`il sito di riferimento del link e' stato cambiato`);
+      changeUrls();
+
+      /* ESERCIZIO 5
+               Scrivi una funzione che aggiunga un nuovo elemento lista alla seconda lista non ordinata
+            */
+
+      const addToTheSecond = function () {
+        const h = document.getElementsByTagName(`ul`)[1];
+        const a = document.createElement(`li`);
+        a.innerText = `Caitlyn`;
+        h.appendChild(a);
+      };
+      console.log(`il quarto elemento della seconda lista e' stato aggiunto`);
+      addToTheSecond();
+
+      /* ESERCIZIO 6
+               Scrivi una funzione che aggiunga un secondo paragrafo al primo div
+            */
+
+      const addParagraph = function () {
+        const h = document.getElementsByTagName(`div`)[2];
+        const a = document.createElement(`p`);
+        a.innerText = `Caitlyn e' un tiratore molto forte in lane e con un potential scaling medio alto: ha una weak fase tra il primo ed il terzo item`;
+        h.appendChild(a);
+      };
+      console.log(`il paragrafo 6 e' stato aggiunto`);
+      addParagraph();
+
+      /* ESERCIZIO 7
+               Scrivi una funzione che faccia scomparire la prima lista non ordinata
+            */
+
+      const hideFirstUl = function () {
+        const h = document.getElementsByTagName(`ul`)[0];
+
+        h.style.display = `none`;
+      };
+      console.log(`la prima Unordered list e' stata nascosta`);
+      hideFirstUl();
+
+      /* ESERCIZIO 8
+               Scrivi una funzione che renda verde il background di ogni lista non ordinata
+              */
+
+      const paintItGreen = function () {
+        const h = document.getElementsByTagName(`ul`);
+        const arr = Array.from(h);
+        console.log(arr);
+        arr.forEach((n) => {
+          n.style.backgroundColor = `green`;
+          n.style.width = `10%`;
+        });
+      };
+      paintItGreen();
+      /* ESERCIZIO 9
+               Scrivi una funzione che rimuova l'ultima lettera dall'h1 ogni volta che l'utente lo clicca
+              */
+
+      const makeItClickable = function () {
+        const h = document.getElementsByTagName(`h1`)[0];
+        console.log(h);
+        const arr = Array.from(h); /////////
+        arr.remove(slice(0, -1));
+      };
+
+      /* ESERCIZIO 10
+               Crea una funzione che, al click sul footer, riveli l'URL del link interno come contenuto di un alert()
+              */
+
+      const revealFooterLink = function () {
+        const h = document.getElementsByTagName(`a`)[1];
+
+        alert(h.getAttribute(`href`));
+      };
+
+      /* ESERCIZIO 11
+               Crea una funzione che crei una tabella nell'elemento con id "tableArea".
+               La tabella avrà 5 elementi e questa struttura: immagine, nome prodotto, quantità, prezzo
+            */
+
+      const generateTable = function () {
+        const h = document.getElementById(`tableArea`);
+        const a = document.createElement(`table`);
+
+        const td1 = a.insertRow(0);
+        td1.innerHTML = `TABLE 1 `;
+
+        // const td3 = a.insertRow(2);
+        // td3.innerHTML = `riga 3`;
+        let cell1 = td1.insertCell(0);
+        let cell2 = td1.insertCell(1);
+        let cell3 = td1.insertCell(2);
+        let cell4 = td1.insertCell(3);
+        let cell5 = td1.insertCell(4);
+        cell2.innerHTML = `immagine`;
+        cell1.innerHTML = `nome`;
+        cell3.innerText = `prodotto`;
+        cell4.innerHTML = `quantita`;
+        cell5.innerHTML = `prezzo`;
+
+        // const tr2 = td1.insertCell();
+        // tr1.innerText = `Immagissne`;
+
+        // const td2 = a.insertRow();
+        // td2.innerText = `nome`;
+        // const td3 = a.insertRow();
+        // td3.innerText = `prodotto`;
+        // const td5 = a.insertRow();
+        // td5.innerText = `quantita`;
+        // const td4 = a.insertRow();
+        // td4.innerText = `prezzo`;
+
+        h.appendChild(a);
+      };
+
+      generateTable();
+      /* ESERCIZIO 12
+               Crea una funzione che aggiunga una riga alla tabella precedentemente creata e fornisca i dati necessari come parametri
+            */
+
+      const addRow = function () {
+        const h = document.getElementsByTagName(`table`)[0];
+        console.log(h);
+        const td2 = h.insertRow(-1);
+        td2.innerHTML = `riga 2`;
+        let cell1 = td2.insertCell(0);
+        let cell2 = td2.insertCell(1);
+        let cell3 = td2.insertCell(2);
+        let cell4 = td2.insertCell(3);
+        let cell5 = td2.insertCell(4);
+        let image = document.createElement(`img`);
+        image.style.width = `50px`;
+        image.src = `https://images.ctfassets.net/uaddx06iwzdz/32vFjbfpQQ2GoUDmS73gYT/e72b2239eb16ee8c074545f4a45fe09a/Audi_A2_Front-1100.jpeg`;
+        cell1.innerHTML = `audi A2`;
+        cell2.appendChild(image);
+        cell3.innerHTML = `Audi`;
+        cell4.innerHTML = `1`;
+        cell5.innerHTML = `31.000 euro`;
+        h.style.fontSize = `1em`;
+      };
+      addRow();
+      /* ESERCIZIO 14}
+              Crea una funzione che nasconda le immagini della tabella quando eseguita
+            */
+
+      const hideAllImages = function () {
+        const h = document.getElementsByTagName(`td`)[7];
+        console.log(h);
+        h.style.display = `none`;
+      };
+      hideAllImages();
+      /* EXTRA ESERCIZIO 15
+              Crea una funzione che cambi il colore del h2 con id "changeMyColor" con un colore random ad ogni click ricevuto
+            */
+
+      const changeColorWithRandom = function () {};
+
+      /* EXTRA ESERCIZIO 16
+              Crea una funzione che elimini le vocali da ogni elemento testuale della pagina (puoi aiutarti con i nuovi metodi degli array di ES6)
+            */
+
+      const deleteVowels = function () {};
+
+      //font size
+      const FontSize = function () {
+        const h = document.getElementsByTagName(`body`)[0];
+        // console.log(h);
+        h.style.fontSize = `1.5em`;
+      };
+      FontSize();
+    </script>
+  </body>
+</html>
